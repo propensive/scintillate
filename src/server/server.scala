@@ -178,7 +178,7 @@ case class Request(method: HttpMethod, body: HttpBody.Chunked, query: Text, ssl:
     rawHeaders.map:
       case (RequestHeader(header), values) => header -> values
 
-  lazy val length: Int throws StreamCutError =
+  lazy val length: Int =
     headers.get(RequestHeader.ContentLength)
       .map(_.head)
       .flatMap(Int.unapply(_))
@@ -195,7 +195,7 @@ extension (value: Http.type)
     summon[RequestHandler].listen(handler)
 
 def request(using Request): Request = summon[Request]
-inline def param(using Request)(key: Text): Text throws MissingParamError =
+inline def param(using Request)(key: Text): Text =
   summon[Request].params.get(key).getOrElse:
     throw MissingParamError(key)
 
@@ -222,7 +222,7 @@ case class RequestParam[T](key: Text)(using ParamReader[T]):
     summon[Request].params.get(key).flatMap(summon[ParamReader[T]].read(_))
 
   def unapply(req: Request): Option[T] = opt(using req)
-  def apply()(using Request): T throws MissingParamError = opt.getOrElse(throw MissingParamError(key))
+  def apply()(using Request): T = opt.getOrElse(throw MissingParamError(key))
 
 trait HttpService:
   def stop(): Unit
