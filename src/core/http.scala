@@ -65,7 +65,6 @@ object Postable extends FallbackPostable:
   given Postable[Unit] = Postable(media"text/plain", unit => LazyList())
   given Postable[Bytes] = Postable(media"application/octet-stream", LazyList(_))
   given Postable[LazyList[Bytes]] = Postable(media"application/octet-stream", _.map(identity(_)))
-  given Postable[DataStream] = Postable(media"application/octet-stream", identity(_))
   
   given dataStream[T](using response: clairvoyant.HttpResponse[T]): Postable[T] =
     Postable(Media.parse(response.mediaType.show), response.content(_).map { v => v })
