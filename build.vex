@@ -55,7 +55,7 @@
         "gastronomy/core"
       ],
       "sources": ["src/core"],
-      "version": "0.2.0",
+      "version": "0.3.0",
       "docs": ["doc"]
     },
     {
@@ -63,7 +63,7 @@
       "id": "scintillate/server",
       "links": ["scintillate/core"],
       "sources": ["src/server"],
-      "version": "0.2.0",
+      "version": "0.3.0",
       "docs": ["doc"]
     },
     {
@@ -73,7 +73,7 @@
       "dependencies": ["javax.servlet:javax.servlet-api:3.0.1"],
       "jars": ["https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar"],
       "sources": ["src/servlet"],
-      "version": "0.2.0",
+      "version": "0.3.0",
       "docs": ["doc"]
     }
   ]
